@@ -23,7 +23,7 @@ export const accounts: Account[] = [
     name: 'Primary Checking',
     type: 'Checking',
     accountNumber: '**** **** **** 1234',
-    balance: 10520.55,
+    balance: 28864612.91,
     availableBalance: 28864612.91,
   },
   {
