@@ -24,7 +24,7 @@ export const accounts: Account[] = [
     type: 'Checking',
     accountNumber: '**** **** **** 1234',
     balance: 10520.55,
-    availableBalance: 110864612.91,
+    availableBalance: 28864612.91,
   },
   {
     id: 'acc2',
