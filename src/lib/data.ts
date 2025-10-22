@@ -32,7 +32,7 @@ export const accounts: Account[] = [
     type: 'Savings',
     accountNumber: '**** **** **** 5678',
     balance: 85768092.75,
-    availableBalance: 55000.00,
+    availableBalance: 85768092.75,
   },
 ];
 
