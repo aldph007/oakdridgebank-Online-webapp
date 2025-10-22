@@ -1,3 +1,4 @@
+
 export type Account = {
   id: string;
   name: string;
@@ -30,7 +31,7 @@ export const accounts: Account[] = [
     name: 'High-Yield Savings',
     type: 'Savings',
     accountNumber: '**** **** **** 5678',
-    balance: 110768092.75,
+    balance: 85768092.75,
     availableBalance: 55000.00,
   },
 ];
