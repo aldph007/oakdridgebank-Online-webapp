@@ -5,7 +5,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { accounts, transactions } from "@/lib/data"
+import { accounts, transactions, user } from "@/lib/data"
 import { format } from "date-fns"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { DollarSign, Clock } from "lucide-react"
@@ -27,7 +27,7 @@ export default function OverviewPage() {
     return (
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold font-headline">Welcome, John!</h1>
+          <h1 className="text-3xl font-bold font-headline">Welcome, {user.fullName.split(' ')[0]}!</h1>
           <p className="text-muted-foreground">Here's your financial summary at a glance.</p>
         </div>
         

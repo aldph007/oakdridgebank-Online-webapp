@@ -36,6 +36,7 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar"
 import { findImage } from "@/lib/placeholder-images"
+import { user } from "@/lib/data"
 
 function Logo() {
   return (
@@ -144,8 +145,8 @@ export default function DashboardLayout({
                       <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                     <div className="hidden md:flex flex-col items-start">
-                        <span className="text-sm font-medium">John Doe</span>
-                        <span className="text-xs text-muted-foreground">john.doe@example.com</span>
+                        <span className="text-sm font-medium">{user.fullName}</span>
+                        <span className="text-xs text-muted-foreground">{user.email}</span>
                     </div>
                     <ChevronDown className="h-4 w-4 hidden md:block" />
                   </Button>

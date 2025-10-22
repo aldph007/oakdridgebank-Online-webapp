@@ -23,14 +23,14 @@ export const accounts: Account[] = [
     type: 'Checking',
     accountNumber: '**** **** **** 1234',
     balance: 10520.55,
-    availableBalance: 10220.55,
+    availableBalance: 110864612.91,
   },
   {
     id: 'acc2',
     name: 'High-Yield Savings',
     type: 'Savings',
     accountNumber: '**** **** **** 5678',
-    balance: 55000.00,
+    balance: 110768092.75,
     availableBalance: 55000.00,
   },
 ];
@@ -49,6 +49,6 @@ export const transactions: Transaction[] = [
 ];
 
 export const user = {
-    fullName: 'John Doe',
-    email: 'john.doe@example.com',
+    fullName: 'Joseph Phillips',
+    email: 'JosephPhillips12@mail.com',
 };
