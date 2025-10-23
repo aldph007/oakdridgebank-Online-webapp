@@ -72,7 +72,7 @@ function UserProfile() {
                 <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div className="flex flex-col text-sm">
-                <span className="font-semibold text-sidebar-primary-foreground">{user.fullName}</span>
+                <span className="font-semibold text-sidebar-primary">{user.fullName}</span>
                 <span className="text-sidebar-foreground/80">{user.email}</span>
             </div>
         </div>
