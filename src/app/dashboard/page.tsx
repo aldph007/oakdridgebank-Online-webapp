@@ -26,11 +26,6 @@ export default function OverviewPage() {
   
     return (
       <div className="space-y-8">
-        <div>
-          <h1 className="text-3xl font-bold font-headline">Welcome, {user.fullName.split(' ')[0]}!</h1>
-          <p className="text-muted-foreground">Here's your financial summary at a glance.</p>
-        </div>
-        
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

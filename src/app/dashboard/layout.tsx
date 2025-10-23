@@ -99,7 +99,7 @@ export default function DashboardLayout({
   }
   
   const getPageDescription = () => {
-      if (pathname === '/dashboard') return "Here's a snapshot of your financial health.";
+      if (pathname === '/dashboard') return "A snapshot of your financial health.";
       if (pathname.startsWith('/dashboard/transactions')) return 'View, search, and filter all your transactions.';
       if (pathname.startsWith('/dashboard/transfers')) return 'Move money securely between your accounts or to others.';
       if (pathname.startsWith('/dashboard/deposit')) return 'Deposit checks by uploading an image. Powered by AI.';
@@ -107,7 +107,7 @@ export default function DashboardLayout({
       if (pathname.startsWith('/dashboard/cards')) return 'Manage your debit and credit cards.';
       if (pathname.startsWith('/dashboard/statements')) return 'Access and download your monthly statements.';
       if (pathname.startsWith('/dashboard/settings')) return 'Manage your account settings and personal information.';
-      return 'Here\'s a snapshot of your financial health.';
+      return 'A snapshot of your financial health.';
   }
 
   return (
