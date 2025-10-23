@@ -52,4 +52,3 @@ export const user = {
     fullName: 'Antonio T. Leonardo',
     email: 'Antoniosenior1940s@gmail.com',
 };
-
