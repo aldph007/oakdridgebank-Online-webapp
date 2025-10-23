@@ -49,6 +49,6 @@ export const transactions: Transaction[] = [
   ];
 
 export const user = {
-    fullName: 'Joseph Phillips',
+    fullName: 'Joseph H. Phillips',
     email: 'JosephPhillips12@mail.com',
 };
