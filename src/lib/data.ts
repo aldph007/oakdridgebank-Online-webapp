@@ -37,11 +37,11 @@ export const accounts: Account[] = [
 ];
 
 export const transactions: Transaction[] = [
-  { id: 't1', date: '2024-07-26', description: 'Netflix Subscription', amount: -15.49, type: 'debit', status: 'Completed' },
-  { id: 't2', date: '2024-07-25', description: 'Salary Deposit', amount: 3500.00, type: 'credit', status: 'Completed' },
-  { id: 't3', date: '2024-07-25', description: 'Whole Foods Market', amount: -124.30, type: 'debit', status: 'Completed' },
-  { id: 't4', date: '2024-07-24', description: 'Zelle Transfer to Jane Doe', amount: -50.00, type: 'debit', status: 'Completed' },
-  { id: 't5', date: '2024-07-23', description: 'Mobile Check Deposit', amount: 300.00, type: 'credit', status: 'Pending' },
+  { id: 't1', date: '2024-10-18', description: 'Netflix Subscription', amount: -15.99, type: 'debit', status: 'Completed' },
+  { id: 't2', date: '2024-10-17', description: 'Salary Deposit', amount: 4500.00, type: 'credit', status: 'Completed' },
+  { id: 't3', date: '2024-08-20', description: 'Grocery Shopping', amount: -124.50, type: 'debit', status: 'Completed' },
+  { id: 't4', date: '2024-07-15', description: 'Online Transfer to John Smith', amount: -500.00, type: 'debit', status: 'Completed' },
+  { id: 't5', date: '2024-06-05', description: 'ATM Withdrawal', amount: -200.00, type: 'debit', status: 'Completed' },
   { id: 't6', date: '2024-07-22', description: 'Starbucks', amount: -5.75, type: 'debit', status: 'Completed' },
   { id: 't7', date: '2024-07-21', description: 'ATM Withdrawal', amount: -100.00, type: 'debit', status: 'Completed' },
   { id: 't8', date: '2024-07-20', description: 'Amazon.com Purchase', amount: -89.99, type: 'debit', status: 'Completed' },

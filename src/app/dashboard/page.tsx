@@ -13,10 +13,18 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 function formatCurrency(amount: number) {
-  return new Intl.NumberFormat("en-US", {
+  const formattedAmount = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-  }).format(amount)
+  }).format(Math.abs(amount));
+
+  if (amount < 0) {
+    return `-${formattedAmount}`;
+  }
+  if (amount > 0) {
+    return `+${formattedAmount}`;
+  }
+  return formattedAmount;
 }
 
 export default function OverviewPage() {
@@ -33,7 +41,7 @@ export default function OverviewPage() {
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{formatCurrency(totalBalance)}</div>
+              <div className="text-2xl font-bold">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(totalBalance)}</div>
               <p className="text-xs text-muted-foreground">+2.1% from last month</p>
             </CardContent>
           </Card>
@@ -43,7 +51,7 @@ export default function OverviewPage() {
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{formatCurrency(accounts[0].availableBalance)}</div>
+              <div className="text-2xl font-bold">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(accounts[0].availableBalance)}</div>
               <p className="text-xs text-muted-foreground">in Primary Checking</p>
             </CardContent>
           </Card>
@@ -54,7 +62,7 @@ export default function OverviewPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{pendingTransactions.length}</div>
-              <p className="text-xs text-muted-foreground">{formatCurrency(pendingTransactions.reduce((sum, t) => sum + t.amount, 0))} total</p>
+              <p className="text-xs text-muted-foreground">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(pendingTransactions.reduce((sum, t) => sum + t.amount, 0))} total</p>
             </CardContent>
           </Card>
           <Card>
@@ -63,7 +71,7 @@ export default function OverviewPage() {
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{formatCurrency(accounts[1].balance)}</div>
+              <div className="text-2xl font-bold">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(accounts[1].balance)}</div>
               <p className="text-xs text-muted-foreground">in High-Yield Savings</p>
             </CardContent>
           </Card>
@@ -83,8 +91,8 @@ export default function OverviewPage() {
                                     <p className="text-sm text-muted-foreground">{account.type} &middot; {account.accountNumber}</p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="font-semibold text-lg">{formatCurrency(account.balance)}</p>
-                                    <p className="text-sm text-muted-foreground">Available: {formatCurrency(account.availableBalance)}</p>
+                                    <p className="font-semibold text-lg">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(account.balance)}</p>
+                                    <p className="text-sm text-muted-foreground">Available: {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(account.availableBalance)}</p>
                                 </div>
                             </div>
                         ))}
@@ -95,7 +103,7 @@ export default function OverviewPage() {
                 <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle className="font-headline">Recent Transactions</CardTitle>
                     <Button asChild variant="ghost" size="sm">
-                        <Link href="/dashboard/transactions">View all</Link>
+                        <Link href="/dashboard/history">View all</Link>
                     </Button>
                 </CardHeader>
                 <CardContent>
@@ -103,8 +111,9 @@ export default function OverviewPage() {
                         <TableBody>
                             {recentTransactions.map((transaction) => (
                                 <TableRow key={transaction.id}>
-                                    <TableCell className="font-medium">{transaction.description}</TableCell>
                                     <TableCell>{format(new Date(transaction.date), "MMM d")}</TableCell>
+                                    <TableCell className="font-medium">{transaction.description}</TableCell>
+                                    <TableCell>{transaction.status}</TableCell>
                                     <TableCell className="text-right">
                                         <span className={transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}>
                                             {formatCurrency(transaction.amount)}
