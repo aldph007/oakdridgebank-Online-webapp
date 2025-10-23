@@ -44,7 +44,8 @@ function Logo() {
 
 function NavItem({ href, icon: Icon, children }: { href: string; icon: React.ElementType; children: React.ReactNode }) {
   const pathname = usePathname()
-  const isActive = pathname.startsWith(href)
+  const isActive = pathname === href || (href !== "/dashboard" && pathname.startsWith(href))
+
 
   return (
     <SidebarMenuItem>
@@ -86,6 +87,7 @@ export default function DashboardLayout({
   const pathname = usePathname();
   
   const getPageTitle = () => {
+    if (pathname === '/dashboard') return 'Dashboard';
     if (pathname.startsWith('/dashboard/transactions')) return 'Transactions';
     if (pathname.startsWith('/dashboard/transfers')) return 'Transfers';
     if (pathname.startsWith('/dashboard/deposit')) return 'Deposit';
@@ -93,10 +95,11 @@ export default function DashboardLayout({
     if (pathname.startsWith('/dashboard/cards')) return 'Cards';
     if (pathname.startsWith('/dashboard/statements')) return 'Statements';
     if (pathname.startsWith('/dashboard/settings')) return 'Settings';
-    return 'Welcome back, Joseph';
+    return 'Dashboard';
   }
   
   const getPageDescription = () => {
+      if (pathname === '/dashboard') return "Here's a snapshot of your financial health.";
       if (pathname.startsWith('/dashboard/transactions')) return 'View, search, and filter all your transactions.';
       if (pathname.startsWith('/dashboard/transfers')) return 'Move money securely between your accounts or to others.';
       if (pathname.startsWith('/dashboard/deposit')) return 'Deposit checks by uploading an image. Powered by AI.';
