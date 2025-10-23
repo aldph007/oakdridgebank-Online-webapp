@@ -35,7 +35,7 @@ function Logo() {
   return (
     <Link href="/dashboard" className="flex items-center gap-2">
       <Landmark className="h-7 w-7 text-sidebar-primary" />
-      <h1 className="text-xl font-bold font-headline text-sidebar-primary-foreground whitespace-nowrap">
+      <h1 className="text-xl font-bold font-headline text-white whitespace-nowrap">
         OAKridgebank
       </h1>
     </Link>
