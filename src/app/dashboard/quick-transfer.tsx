@@ -43,7 +43,7 @@ export default function QuickTransfer() {
   }
 
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
         <CardTitle className="font-headline">Quick Transfer</CardTitle>
         <CardDescription>Send money in a snap.</CardDescription>

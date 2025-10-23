@@ -70,11 +70,11 @@ export default function OverviewPage() {
           </Card>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2">
+        <div className="grid gap-6 lg:grid-cols-5">
+          <div className="lg:col-span-3">
             <SpendingOverview />
           </div>
-          <div>
+          <div className="lg:col-span-2">
             <QuickTransfer />
           </div>
         </div>
