@@ -1,16 +1,19 @@
+'use client';
+
 import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { accounts, transactions, user } from "@/lib/data"
+import { accounts, transactions } from "@/lib/data"
 import { format } from "date-fns"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { DollarSign, Clock } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import SpendingOverview from "./spending-overview"
+import QuickTransfer from "./quick-transfer"
 
 function formatCurrency(amount: number) {
   const formattedAmount = new Intl.NumberFormat("en-US", {
@@ -77,55 +80,41 @@ export default function OverviewPage() {
           </Card>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">Your Accounts</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="space-y-4">
-                        {accounts.map((account) => (
-                            <div key={account.id} className="flex items-center justify-between rounded-lg border p-4">
-                                <div>
-                                    <p className="font-medium">{account.name}</p>
-                                    <p className="text-sm text-muted-foreground">{account.type} &middot; {account.accountNumber}</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="font-semibold text-lg">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(account.balance)}</p>
-                                    <p className="text-sm text-muted-foreground">Available: {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(account.availableBalance)}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </CardContent>
-            </Card>
-            <Card>
-                <CardHeader className="flex flex-row items-center justify-between">
-                    <CardTitle className="font-headline">Recent Transactions</CardTitle>
-                    <Button asChild variant="ghost" size="sm">
-                        <Link href="/dashboard/history">View all</Link>
-                    </Button>
-                </CardHeader>
-                <CardContent>
-                    <Table>
-                        <TableBody>
-                            {recentTransactions.map((transaction) => (
-                                <TableRow key={transaction.id}>
-                                    <TableCell>{format(new Date(transaction.date), "MMM d")}</TableCell>
-                                    <TableCell className="font-medium">{transaction.description}</TableCell>
-                                    <TableCell>{transaction.status}</TableCell>
-                                    <TableCell className="text-right">
-                                        <span className={transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}>
-                                            {formatCurrency(transaction.amount)}
-                                        </span>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <SpendingOverview />
+          </div>
+          <div>
+            <QuickTransfer />
+          </div>
         </div>
+
+        <Card>
+            <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="font-headline">Recent Transactions</CardTitle>
+                <Button asChild variant="ghost" size="sm">
+                    <Link href="/dashboard/history">View all</Link>
+                </Button>
+            </CardHeader>
+            <CardContent>
+                <Table>
+                    <TableBody>
+                        {recentTransactions.map((transaction) => (
+                            <TableRow key={transaction.id}>
+                                <TableCell>{format(new Date(transaction.date), "MMM d")}</TableCell>
+                                <TableCell className="font-medium">{transaction.description}</TableCell>
+                                <TableCell>{transaction.status}</TableCell>
+                                <TableCell className="text-right">
+                                    <span className={transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}>
+                                        {formatCurrency(transaction.amount)}
+                                    </span>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
 
       </div>
     )
