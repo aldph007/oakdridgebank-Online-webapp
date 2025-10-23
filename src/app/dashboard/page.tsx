@@ -9,7 +9,7 @@ import {
 import { accounts, transactions } from "@/lib/data"
 import { format } from "date-fns"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
-import { DollarSign, Clock } from "lucide-react"
+import { DollarSign } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import SpendingOverview from "./spending-overview"
@@ -32,7 +32,6 @@ function formatCurrency(amount: number) {
 
 export default function OverviewPage() {
     const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0)
-    const pendingTransactions = transactions.filter(t => t.status === 'Pending');
     const recentTransactions = transactions.slice(0, 5);
   
     return (
