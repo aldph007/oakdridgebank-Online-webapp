@@ -37,7 +37,7 @@ export default function OverviewPage() {
   
     return (
       <div className="space-y-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Balance</CardTitle>
@@ -56,16 +56,6 @@ export default function OverviewPage() {
             <CardContent>
               <div className="text-2xl font-bold">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(accounts[0].availableBalance)}</div>
               <p className="text-xs text-muted-foreground">in Primary Checking</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending Transactions</CardTitle>
-              <Clock className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{pendingTransactions.length}</div>
-              <p className="text-xs text-muted-foreground">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(pendingTransactions.reduce((sum, t) => sum + t.amount, 0))} total</p>
             </CardContent>
           </Card>
           <Card>
