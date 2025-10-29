@@ -36,11 +36,11 @@ export default function SignupPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="fullname">Full Name</Label>
-              <Input id="fullname" type="text" placeholder="John Doe" required />
+              <Input id="fullname" type="text" placeholder="Enter your full name" required />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="john.doe@example.com" required />
+              <Input id="email" type="email" placeholder="email@example.com" required />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
