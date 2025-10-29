@@ -47,12 +47,8 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-6">
-       <div>
-          <h1 className="text-3xl font-bold font-headline">Settings</h1>
-          <p className="text-muted-foreground">Manage your account settings and personal information.</p>
-        </div>
       <Tabs defaultValue="profile" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-2 md:w-[400px]">
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
         </TabsList>
@@ -67,7 +63,7 @@ export default function SettingsPage() {
                     <div className="flex items-center gap-4">
                         <Avatar className="h-20 w-20">
                             <AvatarImage src={userAvatar?.imageUrl} alt={userAvatar?.description} data-ai-hint={userAvatar?.imageHint} />
-                            <AvatarFallback>JD</AvatarFallback>
+                            <AvatarFallback>AL</AvatarFallback>
                         </Avatar>
                         <Button variant="outline">Change Photo</Button>
                     </div>

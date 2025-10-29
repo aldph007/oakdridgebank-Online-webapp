@@ -27,9 +27,12 @@ import {
   SidebarTrigger,
   SidebarFooter,
 } from "@/components/ui/sidebar"
-import { user } from "@/lib/data"
+import { user, transactions } from "@/lib/data"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { findImage } from "@/lib/placeholder-images"
+import { DarkModeToggle } from "@/components/dark-mode-toggle"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { format } from "date-fns"
 
 function Logo() {
   return (
@@ -69,7 +72,7 @@ function UserProfile() {
         <div className="flex items-center gap-3 p-2">
             <Avatar className="h-10 w-10">
                 <AvatarImage src={userAvatar?.imageUrl} alt={userAvatar?.description} data-ai-hint={userAvatar?.imageHint} />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarFallback>AL</AvatarFallback>
             </Avatar>
             <div className="flex flex-col text-sm">
                 <span className="font-semibold text-sidebar-primary">{user.fullName}</span>
@@ -77,6 +80,47 @@ function UserProfile() {
             </div>
         </div>
     )
+}
+
+function Notifications() {
+  const recentTransactions = transactions.slice(0, 5);
+
+  function formatCurrency(amount: number) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(amount);
+  }
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="ghost" size="icon" className="rounded-full">
+          <Bell className="h-5 w-5" />
+          <span className="sr-only">Toggle notifications</span>
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent align="end" className="w-96">
+        <div className="flex justify-between items-center mb-4">
+          <h4 className="font-medium text-sm">Notifications</h4>
+        </div>
+        <div className="space-y-4">
+          {recentTransactions.map((transaction) => (
+            <div key={transaction.id} className="flex items-start gap-3">
+              <div className={`mt-1 h-2 w-2 rounded-full ${transaction.status === 'Completed' ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+              <div className="grid gap-1 text-sm">
+                <p className="font-semibold">{transaction.description}</p>
+                <p className="text-muted-foreground">{format(new Date(transaction.date), "MMM d, yyyy 'at' h:mm a")}</p>
+                <p className={`font-medium ${transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}`}>
+                  {transaction.type === 'credit' ? '+' : '-'}{formatCurrency(Math.abs(transaction.amount))}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
 }
 
 export default function DashboardLayout({
@@ -153,14 +197,14 @@ export default function DashboardLayout({
                     <p className="text-muted-foreground">{getPageDescription()}</p>
                 </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Bell className="h-5 w-5" />
-                <span className="sr-only">Toggle notifications</span>
-              </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Settings className="h-5 w-5" />
-                <span className="sr-only">Settings</span>
+            <div className="flex items-center gap-2">
+              <Notifications />
+              <DarkModeToggle />
+              <Button variant="ghost" size="icon" className="rounded-full" asChild>
+                <Link href="/dashboard/settings">
+                  <Settings className="h-5 w-5" />
+                  <span className="sr-only">Settings</span>
+                </Link>
               </Button>
             </div>
           </header>
