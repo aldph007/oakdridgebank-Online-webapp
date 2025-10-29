@@ -1,8 +1,9 @@
+
 'use client';
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { DollarSign, Trash2, PlusCircle, MoreHorizontal } from "lucide-react";
+import { DollarSign, Trash2, PlusCircle, MoreHorizontal, Wifi } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 const cards = [
@@ -13,14 +14,14 @@ const cards = [
         cardHolder: 'Joseph H. Phillips',
         expires: '12/26',
         balance: '256,907.35',
-        bgColor: 'bg-gradient-to-br from-teal-700 to-emerald-900',
-        textColor: 'text-white',
+        bgColor: 'bg-gradient-to-br from-primary to-[#10164e]',
+        textColor: 'text-primary-foreground',
         logo: (
-            <div className="flex items-center gap-1 text-white font-bold text-xl">
-                <span>M</span>
-                <span className="h-4 w-px bg-white"></span>
-                <span>O</span>
-            </div>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M12 2V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M2 12H22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
         )
     },
     {
@@ -30,13 +31,14 @@ const cards = [
         cardHolder: 'Joseph H. Phillips',
         expires: '08/25',
         balance: '95,701.17',
-        bgColor: 'bg-gradient-to-br from-gray-800 to-gray-900',
-        textColor: 'text-white',
+        bgColor: 'bg-muted/30',
+        textColor: 'text-foreground',
         logo: (
-            <div className="flex">
-                <div className="h-6 w-6 rounded-full bg-red-600"></div>
-                <div className="h-6 w-6 rounded-full bg-yellow-500 -ml-3"></div>
-            </div>
+            <svg width="40" height="40" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-foreground">
+                <rect x="0.5" y="0.5" width="37" height="23" rx="3.5" stroke="currentColor"/>
+                <circle cx="10" cy="12" r="6" stroke="currentColor"/>
+                <circle cx="28" cy="12" r="6" stroke="currentColor" stroke-opacity="0.5"/>
+            </svg>
         )
     }
 ]
@@ -58,11 +60,11 @@ export default function CardsPage() {
             </div>
             <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
                 {cards.map((card) => (
-                    <Card key={card.id} className="flex flex-col justify-between">
-                        <CardHeader className={`relative rounded-t-lg ${card.bgColor} ${card.textColor} p-6`}>
+                    <Card key={card.id} className="flex flex-col justify-between overflow-hidden">
+                        <div className={`relative rounded-t-lg ${card.bgColor} ${card.textColor} p-6`}>
                             <div className="flex justify-between items-start">
                                 <span className="font-semibold">{card.bankName}</span>
-                                {card.logo}
+                                <Wifi className="h-5 w-5" />
                             </div>
                             <div className="pt-8 pb-4">
                                 <p className="text-xl md:text-2xl font-mono tracking-wider">{card.cardNumber}</p>
@@ -76,9 +78,10 @@ export default function CardsPage() {
                                     <p className="text-xs opacity-70 text-right">EXPIRES</p>
                                     <p className="font-medium">{card.expires}</p>
                                 </div>
+                                <div className="absolute right-6 bottom-6 opacity-80">{card.logo}</div>
                             </div>
-                        </CardHeader>
-                        <CardContent className="p-6">
+                        </div>
+                        <CardContent className="p-6 flex-1">
                            <div className="flex justify-between items-center">
                                 <div>
                                     <p className="text-sm text-muted-foreground">Balance</p>
