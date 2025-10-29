@@ -37,7 +37,7 @@ const cards = [
             <svg width="40" height="40" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-foreground">
                 <rect x="0.5" y="0.5" width="37" height="23" rx="3.5" stroke="currentColor"/>
                 <circle cx="10" cy="12" r="6" stroke="currentColor"/>
-                <circle cx="28" cy="12" r="6" stroke="currentColor" stroke-opacity="0.5"/>
+                <circle cx="28" cy="12" r="6" stroke="currentColor" strokeOpacity="0.5"/>
             </svg>
         )
     }
