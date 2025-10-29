@@ -32,6 +32,7 @@ import { user, transactions } from "@/lib/data"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { findImage } from "@/lib/placeholder-images"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { DarkModeToggle } from "@/components/dark-mode-toggle"
 
 function Logo() {
   return (
@@ -88,7 +89,7 @@ function Notifications() {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
-    }).format(amount);
+    }).format(Math.abs(amount));
   }
 
   return (
@@ -102,6 +103,9 @@ function Notifications() {
       <PopoverContent align="end" className="w-96">
         <div className="flex justify-between items-center mb-4">
           <h4 className="font-medium text-sm">Notifications</h4>
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/history">View all</Link>
+          </Button>
         </div>
         <div className="space-y-4">
           {recentTransactions.map((transaction) => (
@@ -111,7 +115,7 @@ function Notifications() {
                 <p className="font-semibold">{transaction.description}</p>
                 <p className="text-muted-foreground">{format(new Date(transaction.date), "MMM d, yyyy 'at' h:mm a")}</p>
                 <p className={`font-medium ${transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}`}>
-                  {transaction.type === 'credit' ? '+' : '-'}{formatCurrency(Math.abs(transaction.amount))}
+                  {transaction.type === 'credit' ? '+' : '-'}{formatCurrency(transaction.amount)}
                 </p>
               </div>
             </div>
@@ -198,6 +202,7 @@ export default function DashboardLayout({
             </div>
             <div className="flex items-center gap-2">
               <Notifications />
+              <DarkModeToggle />
               <Button variant="ghost" size="icon" className="rounded-full" asChild>
                 <Link href="/dashboard/settings">
                   <Settings className="h-5 w-5" />
