@@ -13,6 +13,7 @@ import {
   History,
   FileText,
 } from "lucide-react"
+import { format } from "date-fns"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -32,7 +33,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { findImage } from "@/lib/placeholder-images"
 import { DarkModeToggle } from "@/components/dark-mode-toggle"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { format } from "date-fns"
 
 function Logo() {
   return (
