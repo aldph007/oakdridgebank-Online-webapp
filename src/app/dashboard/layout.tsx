@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import Link from "next/link"
@@ -32,7 +33,6 @@ import {
 import { user, notifications } from "@/lib/data"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { findImage } from "@/lib/placeholder-images"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { DarkModeToggle } from "@/components/dark-mode-toggle"
 
 function Logo() {
@@ -84,44 +84,21 @@ function UserProfile() {
 }
 
 function Notifications() {
-  const recentNotifications = notifications.slice(0, 4);
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-full relative">
-          <Bell className="h-5 w-5" />
-          {unreadCount > 0 && (
-             <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-black">
-              {unreadCount}
-            </span>
-          )}
-          <span className="sr-only">Toggle notifications</span>
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent align="end" className="w-96">
-        <div className="flex justify-between items-center mb-4">
-          <h4 className="font-medium text-sm">Notifications</h4>
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/notifications">View all</Link>
-          </Button>
-        </div>
-        <div className="space-y-4">
-          {recentNotifications.map((notification) => (
-            <div key={notification.id} className="flex items-start gap-3">
-               <div className={`mt-1 h-2 w-2 rounded-full ${!notification.read ? 'bg-primary' : 'bg-transparent'}`}></div>
-              <div className="grid gap-1 text-sm">
-                <p className="font-semibold">{notification.title}</p>
-                <p className="text-muted-foreground line-clamp-2">{notification.description}</p>
-                 <p className="text-xs text-muted-foreground">{format(new Date(notification.date), "MMM d, yyyy 'at' h:mm a")}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
-  )
+    <Button variant="ghost" size="icon" className="rounded-full relative" asChild>
+      <Link href="/dashboard/notifications">
+        <Bell className="h-5 w-5" />
+        {unreadCount > 0 && (
+          <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-black">
+            {unreadCount}
+          </span>
+        )}
+        <span className="sr-only">View notifications</span>
+      </Link>
+    </Button>
+  );
 }
 
 export default function DashboardLayout({
