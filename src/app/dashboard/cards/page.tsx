@@ -34,10 +34,22 @@ const cards = [
         bgColor: 'bg-gradient-to-br from-neutral-800 to-black',
         textColor: 'text-neutral-200',
         logo: (
-            <svg width="40" height="40" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-200">
-                <rect x="0.5" y="0.5" width="37" height="23" rx="3.5" stroke="currentColor"/>
-                <circle cx="10" cy="12" r="6" stroke="currentColor"/>
-                <circle cx="28" cy="12" r="6" stroke="currentColor" strokeOpacity={0.5}/>
+            <svg width="40" height="40" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="b">
+                  <stop stopColor="#F79E1B" offset="0%"/>
+                  <stop stopColor="#F58524" offset="100%"/>
+                </linearGradient>
+                <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="c">
+                  <stop stopColor="#FF5F00" offset="0%"/>
+                  <stop stopColor="#F58524" offset="100%"/>
+                </linearGradient>
+              </defs>
+              <g fill="none" fillRule="evenodd">
+                <circle fill="#EA001B" cx="10" cy="10" r="10"/>
+                <circle fill="url(#b)" cx="22" cy="10" r="10"/>
+                <path d="M16 10a10 10 0 0 1-2.922-6.993A10 10 0 0 0 10 0c-5.523 0-10 4.477-10 10s4.477 10 10 10a10 10 0 0 0 3.007-.488A10 10 0 0 1 16 10z" fill="url(#c)"/>
+              </g>
             </svg>
         )
     }
@@ -60,7 +72,7 @@ export default function CardsPage() {
             </div>
             <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
                 {cards.map((card) => (
-                    <Card key={card.id} className="flex flex-col justify-between overflow-hidden">
+                    <Card key={card.id} className="flex flex-col justify-between overflow-hidden shadow-lg">
                         <div className={`relative rounded-t-lg ${card.bgColor} ${card.textColor} p-6`}>
                             <div className="flex justify-between items-start">
                                 <span className="font-semibold">{card.bankName}</span>
