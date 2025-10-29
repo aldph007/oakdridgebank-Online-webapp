@@ -47,7 +47,7 @@ export const accounts: Account[] = [
 export const transactions: Transaction[] = [
     { id: 't1', date: '2025-10-17', description: 'Salary Deposit', amount: 4500.00, type: 'credit', status: 'Completed' },
     { id: 't2', date: '2024-08-20', description: 'Grocery Shopping', amount: -124.50, type: 'debit', status: 'Completed' },
-    { id: 't3', date: '2023-07-15', description: 'Online Transfer to John Smith', amount: -500.00, type: 'debit', status: 'Completed' },
+    { id: 't3', date: '2023-07-15', description: 'Online Transfer to Brayson Matt', amount: -500.00, type: 'debit', status: 'Completed' },
     { id: 't4', date: '2022-06-05', description: 'ATM Withdrawal', amount: -200.00, type: 'debit', status: 'Completed' },
     { id: 't5', date: '2021-05-01', description: 'Starbucks Coffee', amount: -5.75, type: 'debit', status: 'Completed' },
     { id: 't6', date: '2020-04-22', description: 'Refund from Amazon', amount: 89.99, type: 'credit', status: 'Completed' },
