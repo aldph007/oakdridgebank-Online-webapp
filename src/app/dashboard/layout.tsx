@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -28,7 +29,7 @@ import {
   SidebarTrigger,
   SidebarFooter,
 } from "@/components/ui/sidebar"
-import { user, transactions } from "@/lib/data"
+import { user, notifications } from "@/lib/data"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { findImage } from "@/lib/placeholder-images"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -83,14 +84,7 @@ function UserProfile() {
 }
 
 function Notifications() {
-  const recentTransactions = transactions.slice(0, 5);
-
-  function formatCurrency(amount: number) {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(Math.abs(amount));
-  }
+  const recentNotifications = notifications.slice(0, 4);
 
   return (
     <Popover>
@@ -104,19 +98,17 @@ function Notifications() {
         <div className="flex justify-between items-center mb-4">
           <h4 className="font-medium text-sm">Notifications</h4>
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/history">View all</Link>
+            <Link href="/dashboard/notifications">View all</Link>
           </Button>
         </div>
         <div className="space-y-4">
-          {recentTransactions.map((transaction) => (
-            <div key={transaction.id} className="flex items-start gap-3">
-              <div className={`mt-1 h-2 w-2 rounded-full ${transaction.status === 'Completed' ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+          {recentNotifications.map((notification) => (
+            <div key={notification.id} className="flex items-start gap-3">
+               <div className={`mt-1 h-2 w-2 rounded-full ${!notification.read ? 'bg-primary' : 'bg-transparent'}`}></div>
               <div className="grid gap-1 text-sm">
-                <p className="font-semibold">{transaction.description}</p>
-                <p className="text-muted-foreground">{format(new Date(transaction.date), "MMM d, yyyy 'at' h:mm a")}</p>
-                <p className={`font-medium ${transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}`}>
-                  {transaction.type === 'credit' ? '+' : '-'}{formatCurrency(transaction.amount)}
-                </p>
+                <p className="font-semibold">{notification.title}</p>
+                <p className="text-muted-foreground line-clamp-2">{notification.description}</p>
+                 <p className="text-xs text-muted-foreground">{format(new Date(notification.date), "MMM d, yyyy 'at' h:mm a")}</p>
               </div>
             </div>
           ))}
@@ -135,25 +127,25 @@ export default function DashboardLayout({
   
   const getPageTitle = () => {
     if (pathname === '/dashboard') return 'Dashboard';
-    if (pathname.startsWith('/dashboard/transactions')) return 'Transactions';
     if (pathname.startsWith('/dashboard/transfers')) return 'Transfers';
     if (pathname.startsWith('/dashboard/deposit')) return 'Deposit';
     if (pathname.startsWith('/dashboard/history')) return 'History';
     if (pathname.startsWith('/dashboard/cards')) return 'Cards';
     if (pathname.startsWith('/dashboard/statements')) return 'Statements';
     if (pathname.startsWith('/dashboard/settings')) return 'Settings';
+    if (pathname.startsWith('/dashboard/notifications')) return 'Notifications';
     return 'Dashboard';
   }
   
   const getPageDescription = () => {
       if (pathname === '/dashboard') return "A snapshot of your financial health.";
-      if (pathname.startsWith('/dashboard/transactions')) return 'View, search, and filter all your transactions.';
       if (pathname.startsWith('/dashboard/transfers')) return 'Move money securely between your accounts or to others.';
       if (pathname.startsWith('/dashboard/deposit')) return 'Deposit checks by uploading an image. Powered by AI.';
       if (pathname.startsWith('/dashboard/history')) return 'Review your detailed transaction history.';
       if (pathname.startsWith('/dashboard/cards')) return 'Manage your debit and credit cards.';
       if (pathname.startsWith('/dashboard/statements')) return 'Access and download your monthly statements.';
       if (pathname.startsWith('/dashboard/settings')) return 'Manage your account settings and personal information.';
+      if (pathname.startsWith('/dashboard/notifications')) return 'View your account alerts and updates.';
       return 'A snapshot of your financial health.';
   }
 
