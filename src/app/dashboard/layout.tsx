@@ -31,7 +31,6 @@ import {
 import { user, transactions } from "@/lib/data"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { findImage } from "@/lib/placeholder-images"
-import { DarkModeToggle } from "@/components/dark-mode-toggle"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 function Logo() {
@@ -199,7 +198,6 @@ export default function DashboardLayout({
             </div>
             <div className="flex items-center gap-2">
               <Notifications />
-              <DarkModeToggle />
               <Button variant="ghost" size="icon" className="rounded-full" asChild>
                 <Link href="/dashboard/settings">
                   <Settings className="h-5 w-5" />
