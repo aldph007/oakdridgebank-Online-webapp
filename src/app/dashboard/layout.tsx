@@ -85,12 +85,18 @@ function UserProfile() {
 
 function Notifications() {
   const recentNotifications = notifications.slice(0, 4);
+  const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-full">
+        <Button variant="ghost" size="icon" className="rounded-full relative">
           <Bell className="h-5 w-5" />
+          {unreadCount > 0 && (
+             <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-black">
+              {unreadCount}
+            </span>
+          )}
           <span className="sr-only">Toggle notifications</span>
         </Button>
       </PopoverTrigger>
