@@ -59,7 +59,7 @@ export default function NotificationsPage() {
                                     <Mail className="h-5 w-5 text-primary" />
                                 )}
                                 <div className="flex-1 text-left">
-                                    <p className={`font-semibold ${!notification.read ? 'text-primary' : ''}`}>
+                                    <p className={`font-semibold ${!notification.read ? 'text-primary' : ''} ${notification.id === 'n4' ? 'font-bold' : ''}`}>
                                         {notification.title}
                                     </p>
                                     <p className="text-sm text-muted-foreground">
@@ -68,7 +68,7 @@ export default function NotificationsPage() {
                                 </div>
                             </div>
                         </AccordionTrigger>
-                        <AccordionContent className="p-4 pt-0 text-sm text-muted-foreground whitespace-pre-wrap">
+                        <AccordionContent className={`p-4 pt-0 text-sm text-muted-foreground whitespace-pre-wrap ${notification.id === 'n4' ? 'font-medium text-foreground' : ''}`}>
                             {notification.description}
                         </AccordionContent>
                     </AccordionItem>
