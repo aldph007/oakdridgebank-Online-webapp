@@ -95,6 +95,6 @@ export const notifications: Notification[] = [
 ];
 
 export const user = {
-    fullName: 'Antonio T. Leonardo',
-    email: 'Antoniosenior1940s@gmail.com',
+    fullName: 'Joseph H. Phillips',
+    email: 'JosephdPhillips12@mail.com',
 };

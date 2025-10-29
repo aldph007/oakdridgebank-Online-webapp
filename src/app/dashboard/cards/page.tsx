@@ -10,9 +10,9 @@ const cards = [
         id: 'card-1',
         bankName: 'OAKridgebank',
         cardNumber: '4085 **** **** 6829',
-        cardHolder: 'Antonio T. Leonardo',
+        cardHolder: 'Joseph H. Phillips',
         expires: '12/26',
-        balance: '78,217.35',
+        balance: '256,907.35',
         bgColor: 'bg-gradient-to-br from-teal-700 to-emerald-900',
         textColor: 'text-white',
         logo: (
@@ -27,9 +27,9 @@ const cards = [
         id: 'card-2',
         bankName: 'OAKridgebank',
         cardNumber: '5594 **** **** 6829',
-        cardHolder: 'Antonio T. Leonardo',
+        cardHolder: 'Joseph H. Phillips',
         expires: '08/25',
-        balance: '25,854.17',
+        balance: '95,701.17',
         bgColor: 'bg-gradient-to-br from-gray-800 to-gray-900',
         textColor: 'text-white',
         logo: (

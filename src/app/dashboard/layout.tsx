@@ -15,7 +15,6 @@ import {
   History,
   FileText,
 } from "lucide-react"
-import { format } from "date-fns"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -73,7 +72,7 @@ function UserProfile() {
         <div className="flex items-center gap-3 p-2">
             <Avatar className="h-10 w-10">
                 <AvatarImage src={userAvatar?.imageUrl} alt={userAvatar?.description} data-ai-hint={userAvatar?.imageHint} />
-                <AvatarFallback>AL</AvatarFallback>
+                <AvatarFallback>JP</AvatarFallback>
             </Avatar>
             <div className="flex flex-col text-sm">
                 <span className="font-semibold text-sidebar-primary">{user.fullName}</span>

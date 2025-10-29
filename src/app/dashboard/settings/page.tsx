@@ -63,7 +63,7 @@ export default function SettingsPage() {
                     <div className="flex items-center gap-4">
                         <Avatar className="h-20 w-20">
                             <AvatarImage src={userAvatar?.imageUrl} alt={userAvatar?.description} data-ai-hint={userAvatar?.imageHint} />
-                            <AvatarFallback>AL</AvatarFallback>
+                            <AvatarFallback>JP</AvatarFallback>
                         </Avatar>
                         <Button variant="outline">Change Photo</Button>
                     </div>
