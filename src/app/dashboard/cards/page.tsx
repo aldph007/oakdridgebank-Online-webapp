@@ -31,10 +31,10 @@ const cards = [
         cardHolder: 'Joseph H. Phillips',
         expires: '08/25',
         balance: '95,701.17',
-        bgColor: 'bg-muted/30',
-        textColor: 'text-foreground',
+        bgColor: 'bg-gradient-to-br from-neutral-200 to-neutral-400',
+        textColor: 'text-neutral-800',
         logo: (
-            <svg width="40" height="40" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-foreground">
+            <svg width="40" height="40" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-800">
                 <rect x="0.5" y="0.5" width="37" height="23" rx="3.5" stroke="currentColor"/>
                 <circle cx="10" cy="12" r="6" stroke="currentColor"/>
                 <circle cx="28" cy="12" r="6" stroke="currentColor" strokeOpacity="0.5"/>
