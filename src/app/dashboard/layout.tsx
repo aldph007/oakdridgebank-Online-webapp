@@ -15,6 +15,7 @@ import {
   History,
   FileText,
   LogOut,
+  ArrowLeft
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -74,7 +75,7 @@ function UserProfile() {
         if (names.length > 1) {
             return `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase();
         }
-        return names[0].substring(0, 2).toUpperCase();
+        return name.substring(0, 2).toUpperCase();
     }
 
     return (
@@ -148,6 +149,7 @@ export default function DashboardLayout({
 
   const pageTitle = getPageTitle();
   const pageDescription = getPageDescription();
+  const showBackButton = pathname === '/dashboard/notifications';
 
   return (
     <SidebarProvider>
@@ -177,18 +179,20 @@ export default function DashboardLayout({
               <NavItem href="/dashboard/statements" icon={FileText}>
                 Statements
               </NavItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  onClick={handleLogout}
-                  tooltip={{ children: "Log Out", side: "right", align: "center" }}
-                >
-                  <LogOut />
-                  <span>Log Out</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter className="border-t border-sidebar-border">
+              <SidebarMenu>
+                <SidebarMenuItem>
+                    <SidebarMenuButton
+                    onClick={handleLogout}
+                    tooltip={{ children: "Log Out", side: "right", align: "center" }}
+                    >
+                    <LogOut />
+                    <span>Log Out</span>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
             <UserProfile />
           </SidebarFooter>
         </Sidebar>
@@ -196,10 +200,22 @@ export default function DashboardLayout({
           <header className="flex h-20 items-center justify-between bg-background px-4 md:px-6">
              <div className="flex items-center gap-4">
                 <SidebarTrigger className="h-8 w-8 md:hidden" />
+                 {showBackButton && (
+                    <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => router.back()}>
+                        <ArrowLeft className="h-5 w-5" />
+                        <span className="sr-only">Back</span>
+                    </Button>
+                )}
                 {pageTitle && (
                     <div>
                         <h1 className="text-2xl font-bold font-headline">{pageTitle}</h1>
                         <p className="text-muted-foreground">{pageDescription}</p>
+                    </div>
+                )}
+                 {!pageTitle && (
+                     <div>
+                        <h2 className="text-3xl font-bold font-headline">Welcome back, Joseph!</h2>
+                        <p className="text-muted-foreground">Here's a snapshot of your financial health.</p>
                     </div>
                 )}
             </div>

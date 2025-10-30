@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { format, parseISO } from 'date-fns';
 import { notifications as allNotifications } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +13,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Badge } from '@/components/ui/badge';
 
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState(allNotifications);
@@ -26,6 +27,14 @@ export default function NotificationsPage() {
   const markAllAsRead = () => {
     setNotifications(notifications.map((n) => ({ ...n, read: true })));
   };
+  
+  const sortedNotifications = useMemo(() => {
+    return [...notifications].sort((a, b) => {
+        if (a.id === 'n4') return -1;
+        if (b.id === 'n4') return 1;
+        return parseISO(b.date).getTime() - parseISO(a.date).getTime();
+    });
+  }, [notifications]);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -44,9 +53,9 @@ export default function NotificationsPage() {
           )}
         </CardHeader>
         <CardContent>
-          {notifications.length > 0 ? (
+          {sortedNotifications.length > 0 ? (
              <Accordion type="multiple" className="w-full">
-                {notifications.map((notification) => (
+                {sortedNotifications.map((notification) => (
                     <AccordionItem key={notification.id} value={notification.id}>
                         <AccordionTrigger
                             onClick={() => markAsRead(notification.id)}
@@ -66,9 +75,15 @@ export default function NotificationsPage() {
                                         {format(parseISO(notification.date), "MMM d, yyyy 'at' h:mm a")}
                                     </p>
                                 </div>
+                                {notification.id === 'n4' && (
+                                    <Badge variant="destructive">Important</Badge>
+                                )}
                             </div>
                         </AccordionTrigger>
                         <AccordionContent className={`p-4 pt-0 text-sm text-muted-foreground whitespace-pre-wrap ${notification.id === 'n4' ? 'font-medium text-foreground' : ''}`}>
+                            {notification.id === 'n4' && (
+                                <p className="text-destructive font-bold mb-2">Disclaimer: Important Notice</p>
+                            )}
                             {notification.description}
                         </AccordionContent>
                     </AccordionItem>
