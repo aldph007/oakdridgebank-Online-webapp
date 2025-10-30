@@ -93,7 +93,12 @@ function UserProfile() {
 }
 
 function Notifications() {
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const [unreadCount, setUnreadCount] = React.useState(0);
+  
+  React.useEffect(() => {
+      setUnreadCount(notifications.filter(n => !n.read).length);
+  }, []);
+
 
   return (
     <Button variant="ghost" size="icon" className="rounded-full relative" asChild>
@@ -198,7 +203,7 @@ export default function DashboardLayout({
         </Sidebar>
         <div className="flex flex-1 flex-col">
           <header className="flex h-20 items-center justify-between bg-background px-4 md:px-6">
-             <div className="flex items-center gap-4">
+             <div className="flex items-center gap-2">
                 <SidebarTrigger className="h-8 w-8 md:hidden" />
                  {showBackButton && (
                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => router.back()}>
@@ -214,7 +219,7 @@ export default function DashboardLayout({
                 )}
                  {!pageTitle && (
                      <div>
-                        <h2 className="text-3xl font-bold font-headline">Welcome back, Joseph!</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold font-headline">Welcome back, Joseph!</h2>
                         <p className="text-muted-foreground">Here's a snapshot of your financial health.</p>
                     </div>
                 )}
