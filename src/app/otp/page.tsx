@@ -1,20 +1,40 @@
 'use client';
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { Landmark } from "lucide-react";
+import { Landmark, XCircle } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
 
 export default function OtpPage() {
   const router = useRouter();
+  const { toast } = useToast();
+  const [otp, setOtp] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   const handleVerify = (event: React.FormEvent) => {
     event.preventDefault();
-    // Here you would typically handle OTP verification
-    // For this scaffold, we'll just navigate to the dashboard
-    router.push('/dashboard');
+    setError(null);
+
+    if (otp.length !== 6) {
+        setError("Please enter the complete 6-digit code.");
+        return;
+    }
+
+    const isValidOtp = /[OAK]/i.test(otp);
+
+    if (isValidOtp) {
+      toast({
+        title: "Login Successful",
+        description: "Welcome to your dashboard.",
+      });
+      router.push('/dashboard');
+    } else {
+      setError("Invalid OTP. The code must contain 'O', 'A', or 'K'.");
+    }
   };
 
   return (
@@ -33,7 +53,7 @@ export default function OtpPage() {
           </CardHeader>
           <form onSubmit={handleVerify}>
             <CardContent className="flex flex-col items-center space-y-4">
-                <InputOTP maxLength={6}>
+                <InputOTP maxLength={6} value={otp} onChange={(value) => setOtp(value.toUpperCase())}>
                     <InputOTPGroup>
                         <InputOTPSlot index={0} />
                         <InputOTPSlot index={1} />
@@ -43,6 +63,12 @@ export default function OtpPage() {
                         <InputOTPSlot index={5} />
                     </InputOTPGroup>
                 </InputOTP>
+                {error && (
+                    <div className="mt-4 text-destructive flex items-center gap-2 text-sm">
+                        <XCircle className="h-4 w-4" />
+                        <span>{error}</span>
+                    </div>
+                )}
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
               <Button type="submit" className="w-full">Verify Code</Button>

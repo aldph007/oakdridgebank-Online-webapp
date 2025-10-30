@@ -2,7 +2,7 @@
 
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
@@ -36,6 +36,7 @@ import { user, notifications } from "@/lib/data"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { findImage } from "@/lib/placeholder-images"
 import { DarkModeToggle } from "@/components/dark-mode-toggle"
+import { useToast } from "@/hooks/use-toast"
 
 function Logo() {
   return (
@@ -123,7 +124,36 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { toast } = useToast();
   
+  const handleLogout = useCallback((showToast = true) => {
+    if (showToast) {
+        toast({
+            title: "Logged Out",
+            description: "You have been logged out due to inactivity.",
+        });
+    }
+    router.push('/');
+  }, [router, toast]);
+
+  useEffect(() => {
+    let inactivityTimer: NodeJS.Timeout;
+
+    const resetTimer = () => {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => handleLogout(), 6 * 60 * 1000); // 6 minutes
+    };
+
+    const events = ['mousemove', 'keydown', 'click', 'scroll'];
+    events.forEach(event => window.addEventListener(event, resetTimer));
+    resetTimer(); // Initial call
+
+    return () => {
+        clearTimeout(inactivityTimer);
+        events.forEach(event => window.removeEventListener(event, resetTimer));
+    };
+  }, [handleLogout]);
+
   const getPageTitle = () => {
     if (pathname === '/dashboard') return null; // Title is now on the page itself
     if (pathname.startsWith('/dashboard/transfers')) return 'Transfers';
@@ -147,11 +177,6 @@ export default function DashboardLayout({
       if (pathname.startsWith('/dashboard/notifications')) return 'View your account alerts and updates.';
       return 'A snapshot of your financial health.';
   }
-
-  const handleLogout = () => {
-    // In a real app, you'd clear session/token here
-    router.push('/');
-  };
 
   const pageTitle = getPageTitle();
   const pageDescription = getPageDescription();
@@ -191,7 +216,7 @@ export default function DashboardLayout({
               <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton
-                    onClick={handleLogout}
+                    onClick={() => handleLogout(false)}
                     tooltip={{ children: "Log Out", side: "right", align: "center" }}
                     >
                     <LogOut />
