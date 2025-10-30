@@ -245,7 +245,7 @@ export default function DashboardLayout({
                 )}
                  {!pageTitle && (
                      <div>
-                        <h2 className="text-2xl md:text-3xl font-bold font-headline">Welcome back, Joseph!</h2>
+                        <h2 className="text-xl md:text-3xl font-bold font-headline">Welcome back, Joseph!</h2>
                         <p className="text-muted-foreground">Here's a snapshot of your financial health.</p>
                     </div>
                 )}
