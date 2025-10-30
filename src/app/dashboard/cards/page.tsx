@@ -10,7 +10,7 @@ const cards = [
     {
         id: 'card-1',
         bankName: 'OAKridgebank',
-        cardNumber: '4085 **** **** 6829',
+        cardNumber: '4085 **** **** 3852',
         cardHolder: 'Joseph H. Phillips',
         expires: '12/26',
         balance: '256,907.35',
@@ -39,7 +39,7 @@ const cards = [
     {
         id: 'card-2',
         bankName: 'OAKridgebank',
-        cardNumber: '5594 **** **** 6829',
+        cardNumber: '5594 **** **** 9174',
         cardHolder: 'Joseph H. Phillips',
         expires: '08/25',
         balance: '95,701.17',
