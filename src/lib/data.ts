@@ -51,9 +51,13 @@ export const transactions: Transaction[] = [
     { id: 't4', date: '2022-06-05', description: 'ATM Withdrawal', amount: -200.00, type: 'debit', status: 'Completed' },
     { id: 't5', date: '2021-05-01', description: 'Starbucks Coffee', amount: -5.75, type: 'debit', status: 'Completed' },
     { id: 't6', date: '2020-04-22', description: 'Refund from Amazon', amount: 89.99, type: 'credit', status: 'Completed' },
+    { id: 't10', date: '2019-11-15', description: 'Venture Capital Investment Return', amount: 25000000.00, type: 'credit', status: 'Completed' },
     { id: 't7', date: '2019-03-01', description: 'Gas Station', amount: -45.30, type: 'debit', status: 'Completed' },
+    { id: 't11', date: '2018-08-01', description: 'Real Estate Sale Proceeds', amount: 55000000.00, type: 'credit', status: 'Completed' },
     { id: 't8', date: '2018-02-09', description: 'Dinner with friends', amount: -85.00, type: 'debit', status: 'Completed' },
+    { id: 't12', date: '2017-05-20', description: 'Stock Portfolio Liquidation', amount: 32500000.00, type: 'credit', status: 'Completed' },
     { id: 't9', date: '2016-03-03', description: 'Client Payment', amount: 9500000.00, type: 'credit', status: 'Completed' },
+    { id: 't13', date: '2015-12-01', description: 'Luxury Vehicle Purchase', amount: -150000.00, type: 'debit', status: 'Completed' },
   ];
 
 export const notifications: Notification[] = [
