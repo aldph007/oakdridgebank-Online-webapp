@@ -15,6 +15,14 @@ export default function SettingsPage() {
     const { toast } = useToast()
     const userAvatar = findImage("user-avatar-1");
 
+    const getInitials = (name: string) => {
+        const names = name.split(' ');
+        if (names.length > 1) {
+            return `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase();
+        }
+        return names[0].substring(0, 2).toUpperCase();
+    }
+
     const handleProfileUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         toast({
@@ -63,7 +71,7 @@ export default function SettingsPage() {
                     <div className="flex items-center gap-4">
                         <Avatar className="h-20 w-20">
                             <AvatarImage src={userAvatar?.imageUrl} alt={userAvatar?.description} data-ai-hint={userAvatar?.imageHint} />
-                            <AvatarFallback>JP</AvatarFallback>
+                            <AvatarFallback>{getInitials(user.fullName)}</AvatarFallback>
                         </Avatar>
                         <Button variant="outline">Change Photo</Button>
                     </div>

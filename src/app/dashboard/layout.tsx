@@ -68,11 +68,19 @@ function NavItem({ href, icon: Icon, children }: { href: string; icon: React.Ele
 
 function UserProfile() {
     const userAvatar = findImage("user-avatar-1");
+    const getInitials = (name: string) => {
+        const names = name.split(' ');
+        if (names.length > 1) {
+            return `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase();
+        }
+        return names[0].substring(0, 2).toUpperCase();
+    }
+
     return (
         <div className="flex items-center gap-3 p-2">
             <Avatar className="h-10 w-10">
                 <AvatarImage src={userAvatar?.imageUrl} alt={userAvatar?.description} data-ai-hint={userAvatar?.imageHint} />
-                <AvatarFallback>JP</AvatarFallback>
+                <AvatarFallback>{getInitials(user.fullName)}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col text-sm">
                 <span className="font-semibold text-sidebar-primary">{user.fullName}</span>
