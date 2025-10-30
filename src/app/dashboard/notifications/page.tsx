@@ -1,9 +1,9 @@
 
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
-import { notifications as allNotifications } from '@/lib/data';
+import { notifications as allNotifications, type Notification } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Bell, Mail, MailOpen } from 'lucide-react';
@@ -15,8 +15,28 @@ import {
 } from "@/components/ui/accordion"
 import { Badge } from '@/components/ui/badge';
 
+type DisplayNotification = Notification & { formattedDate: string };
+
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState(allNotifications);
+  const [displayNotifications, setDisplayNotifications] = useState<DisplayNotification[]>([]);
+
+  useEffect(() => {
+    // Format dates on the client to avoid hydration mismatch
+    const sorted = [...notifications].sort((a, b) => {
+        if (a.id === 'n4') return -1;
+        if (b.id === 'n4') return 1;
+        return parseISO(b.date).getTime() - parseISO(a.date).getTime();
+    });
+
+    setDisplayNotifications(
+      sorted.map(n => ({
+        ...n,
+        formattedDate: format(parseISO(n.date), "MMM d, yyyy 'at' h:mm a")
+      }))
+    );
+  }, [notifications]);
+
 
   const markAsRead = (id: string) => {
     setNotifications(
@@ -27,14 +47,6 @@ export default function NotificationsPage() {
   const markAllAsRead = () => {
     setNotifications(notifications.map((n) => ({ ...n, read: true })));
   };
-  
-  const sortedNotifications = useMemo(() => {
-    return [...notifications].sort((a, b) => {
-        if (a.id === 'n4') return -1;
-        if (b.id === 'n4') return 1;
-        return parseISO(b.date).getTime() - parseISO(a.date).getTime();
-    });
-  }, [notifications]);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -53,9 +65,9 @@ export default function NotificationsPage() {
           )}
         </CardHeader>
         <CardContent>
-          {sortedNotifications.length > 0 ? (
+          {displayNotifications.length > 0 ? (
              <Accordion type="multiple" className="w-full">
-                {sortedNotifications.map((notification) => (
+                {displayNotifications.map((notification) => (
                     <AccordionItem key={notification.id} value={notification.id}>
                         <AccordionTrigger
                             onClick={() => markAsRead(notification.id)}
@@ -72,7 +84,7 @@ export default function NotificationsPage() {
                                         {notification.title}
                                     </p>
                                     <p className="text-sm text-muted-foreground">
-                                        {format(parseISO(notification.date), "MMM d, yyyy 'at' h:mm a")}
+                                        {notification.formattedDate}
                                     </p>
                                 </div>
                                 {notification.id === 'n4' && (
