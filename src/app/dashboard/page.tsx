@@ -6,7 +6,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { accounts, transactions } from "@/lib/data"
+import { accounts, transactions, user } from "@/lib/data"
 import { format } from "date-fns"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { DollarSign } from "lucide-react"
@@ -36,6 +36,10 @@ export default function OverviewPage() {
   
     return (
       <div className="space-y-8">
+        <div className="space-y-2">
+            <h2 className="text-3xl font-bold font-headline">Welcome back, Joseph!</h2>
+            <p className="text-muted-foreground">Here's a snapshot of your financial health.</p>
+        </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

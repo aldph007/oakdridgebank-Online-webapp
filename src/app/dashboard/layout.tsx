@@ -118,7 +118,7 @@ export default function DashboardLayout({
   const router = useRouter();
   
   const getPageTitle = () => {
-    if (pathname === '/dashboard') return 'Dashboard';
+    if (pathname === '/dashboard') return null; // Title is now on the page itself
     if (pathname.startsWith('/dashboard/transfers')) return 'Transfers';
     if (pathname.startsWith('/dashboard/deposit')) return 'Deposit';
     if (pathname.startsWith('/dashboard/history')) return 'History';
@@ -130,7 +130,7 @@ export default function DashboardLayout({
   }
   
   const getPageDescription = () => {
-      if (pathname === '/dashboard') return "A snapshot of your financial health.";
+      if (pathname === '/dashboard') return null;
       if (pathname.startsWith('/dashboard/transfers')) return 'Move money securely between your accounts or to others.';
       if (pathname.startsWith('/dashboard/deposit')) return 'Deposit checks by uploading an image. Powered by AI.';
       if (pathname.startsWith('/dashboard/history')) return 'Review your detailed transaction history.';
@@ -145,6 +145,9 @@ export default function DashboardLayout({
     // In a real app, you'd clear session/token here
     router.push('/');
   };
+
+  const pageTitle = getPageTitle();
+  const pageDescription = getPageDescription();
 
   return (
     <SidebarProvider>
@@ -189,14 +192,16 @@ export default function DashboardLayout({
             <UserProfile />
           </SidebarFooter>
         </Sidebar>
-        <SidebarInset>
+        <div className="flex flex-1 flex-col">
           <header className="flex h-20 items-center justify-between bg-background px-4 md:px-6">
              <div className="flex items-center gap-4">
                 <SidebarTrigger className="h-8 w-8 md:hidden" />
-                <div>
-                    <h1 className="text-2xl font-bold font-headline">{getPageTitle()}</h1>
-                    <p className="text-muted-foreground">{getPageDescription()}</p>
-                </div>
+                {pageTitle && (
+                    <div>
+                        <h1 className="text-2xl font-bold font-headline">{pageTitle}</h1>
+                        <p className="text-muted-foreground">{pageDescription}</p>
+                    </div>
+                )}
             </div>
             <div className="flex items-center gap-2">
               <Notifications />
@@ -212,7 +217,7 @@ export default function DashboardLayout({
           <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 pt-0">
             {children}
           </main>
-        </SidebarInset>
+        </div>
       </div>
     </SidebarProvider>
   )
