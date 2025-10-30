@@ -14,8 +14,8 @@ export default function LoginPage() {
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
     // Here you would typically handle authentication
-    // For this scaffold, we'll just navigate to the dashboard
-    router.push('/dashboard');
+    // For this scaffold, we'll just navigate to the otp page
+    router.push('/otp');
   };
 
   return (
