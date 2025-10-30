@@ -33,7 +33,7 @@ export default function OtpPage() {
       });
       router.push('/dashboard');
     } else {
-      setError("Invalid OTP. The code must contain 'O', 'A', or 'K'.");
+      setError("Invalid OTP.");
     }
   };
 
