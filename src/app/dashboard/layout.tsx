@@ -192,7 +192,7 @@ export default function DashboardLayout({
         <SidebarInset>
           <header className="flex h-20 items-center justify-between bg-background px-4 md:px-6">
              <div className="flex items-center gap-4">
-                <SidebarTrigger className="md:hidden" />
+                <SidebarTrigger className="h-8 w-8 md:hidden" />
                 <div>
                     <h1 className="text-2xl font-bold font-headline">{getPageTitle()}</h1>
                     <p className="text-muted-foreground">{getPageDescription()}</p>
