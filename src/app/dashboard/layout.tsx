@@ -2,6 +2,7 @@
 
 "use client"
 
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
@@ -93,9 +94,9 @@ function UserProfile() {
 }
 
 function Notifications() {
-  const [unreadCount, setUnreadCount] = React.useState(0);
+  const [unreadCount, setUnreadCount] = useState(0);
   
-  React.useEffect(() => {
+  useEffect(() => {
       setUnreadCount(notifications.filter(n => !n.read).length);
   }, []);
 
