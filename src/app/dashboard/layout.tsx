@@ -3,7 +3,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import {
   ArrowRightLeft,
   Bell,
@@ -14,6 +14,7 @@ import {
   Upload,
   History,
   FileText,
+  LogOut,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -114,6 +115,7 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname();
+  const router = useRouter();
   
   const getPageTitle = () => {
     if (pathname === '/dashboard') return 'Dashboard';
@@ -138,6 +140,11 @@ export default function DashboardLayout({
       if (pathname.startsWith('/dashboard/notifications')) return 'View your account alerts and updates.';
       return 'A snapshot of your financial health.';
   }
+
+  const handleLogout = () => {
+    // In a real app, you'd clear session/token here
+    router.push('/');
+  };
 
   return (
     <SidebarProvider>
@@ -167,6 +174,15 @@ export default function DashboardLayout({
               <NavItem href="/dashboard/statements" icon={FileText}>
                 Statements
               </NavItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  onClick={handleLogout}
+                  tooltip={{ children: "Log Out", side: "right", align: "center" }}
+                >
+                  <LogOut />
+                  <span>Log Out</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter className="border-t border-sidebar-border">
