@@ -84,6 +84,9 @@ export default function NotificationsPage() {
                                     <Mail className="h-5 w-5 text-primary" />
                                 )}
                                 <div className="flex-1 text-left">
+                                     {notification.id === 'n4' && (
+                                        <p className="text-xs font-semibold text-destructive text-center mb-1">Pinned Message</p>
+                                    )}
                                     <p className={`font-semibold ${!notification.read ? 'text-primary' : ''} ${notification.id === 'n4' || notification.id === 'n6' ? 'font-bold' : ''}`}>
                                         {notification.title}
                                     </p>
