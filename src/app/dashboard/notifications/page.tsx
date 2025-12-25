@@ -23,18 +23,14 @@ function PinIcon(props: React.ComponentProps<'svg'>) {
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            fill="none"
+            fill="currentColor"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="0"
             strokeLinecap="round"
             strokeLinejoin="round"
             >
-            <path d="M12 22v-8" />
-            <path d="M5 10a7 7 0 0 1 14 0" />
-            <path d="M12 14v-4" />
-            <path d="M8 10h8" />
-            <path d="M5 10c0 4.4-1.6 6.4-3 7" />
-            <path d="M19 10c0 4.4 1.6 6.4 3 7" />
+            <path d="M20.33 3.67a1.48 1.48 0 0 0-2.09 0l-9.47 9.47-1.7-1.7a1.48 1.48 0 0 0-2.09 2.09l1.7 1.7-3.92 3.92a1.48 1.48 0 0 0 2.09 2.09l3.92-3.92 1.7 1.7a1.48 1.48 0 0 0 2.09-2.09l-1.7-1.7 9.47-9.47a1.48 1.48 0 0 0 0-2.09z" />
+            <path d="m13.26 3.19-2.45 2.45 2.09 2.09 2.45-2.45a.74.74 0 0 0-2.09-2.09z" />
         </svg>
     );
 }
