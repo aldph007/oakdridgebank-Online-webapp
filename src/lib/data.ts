@@ -45,6 +45,12 @@ export const accounts: Account[] = [
 ];
 
 export const transactions: Transaction[] = [
+    { id: 't14', date: '2025-12-22', description: 'Pending Property Acquisition', amount: 786950.00, type: 'credit', status: 'Pending' },
+    { id: 't15', date: '2025-12-20', description: 'Fine Art Purchase', amount: -25000.00, type: 'debit', status: 'Completed' },
+    { id: 't16', date: '2025-12-15', description: 'Dividend Income', amount: 12500.00, type: 'credit', status: 'Completed' },
+    { id: 't17', date: '2025-12-05', description: 'Charity Gala Donation', amount: -10000.00, type: 'debit', status: 'Completed' },
+    { id: 't18', date: '2025-11-28', description: 'Consulting Fee', amount: 75000.00, type: 'credit', status: 'Completed' },
+    { id: 't19', date: '2025-11-10', description: 'Luxury Travel Package', amount: -18000.00, type: 'debit', status: 'Completed' },
     { id: 't1', date: '2025-10-17', description: 'Salary Deposit', amount: 4500.00, type: 'credit', status: 'Completed' },
     { id: 't2', date: '2024-08-20', description: 'Grocery Shopping', amount: -124.50, type: 'debit', status: 'Completed' },
     { id: 't3', date: '2023-07-15', description: 'Online Transfer to Brayson Matt', amount: -500.00, type: 'debit', status: 'Completed' },
