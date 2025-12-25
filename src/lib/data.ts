@@ -72,7 +72,7 @@ export const notifications: Notification[] = [
       date: '2025-12-22T09:23:00Z',
       title: 'Action Required: Pending Transaction',
       description: 'A credit transaction for "Pending Property Sale" of $786,950.00 is awaiting your final confirmation (your Token).',
-      read: false
+      read: true
     },
     {
       id: 'n7',
@@ -86,7 +86,7 @@ export const notifications: Notification[] = [
         date: '2025-10-17T10:00:00Z',
         title: 'Successful Deposit',
         description: 'Your salary of $4,500.00 has been successfully deposited into your Primary Checking account.',
-        read: false
+        read: true
     },
     {
         id: 'n2',
