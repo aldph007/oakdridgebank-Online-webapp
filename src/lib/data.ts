@@ -76,7 +76,7 @@ export const notifications: Notification[] = [
     },
     {
       id: 'n7',
-      date: '2025-12-25T20:30:00Z',
+      date: '2025-12-25T13:18:00Z',
       title: 'Security Alert: New Device Login',
       description: 'A new device (Safari on macOS) was used to log in to your account from Des Moines, IA. If this was not you, please secure your account immediately.',
       read: false
