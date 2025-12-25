@@ -24,8 +24,8 @@ export default function NotificationsPage() {
   useEffect(() => {
     // Format dates on the client to avoid hydration mismatch
     const sorted = [...notifications].sort((a, b) => {
-        if (a.id === 'n4') return -1;
-        if (b.id === 'n4') return 1;
+        if (a.id === 'n4' || a.id === 'n6') return -1;
+        if (b.id === 'n4' || b.id === 'n6') return 1;
         return parseISO(b.date).getTime() - parseISO(a.date).getTime();
     });
 
@@ -80,20 +80,20 @@ export default function NotificationsPage() {
                                     <Mail className="h-5 w-5 text-primary" />
                                 )}
                                 <div className="flex-1 text-left">
-                                    <p className={`font-semibold ${!notification.read ? 'text-primary' : ''} ${notification.id === 'n4' ? 'font-bold' : ''}`}>
+                                    <p className={`font-semibold ${!notification.read ? 'text-primary' : ''} ${notification.id === 'n4' || notification.id === 'n6' ? 'font-bold' : ''}`}>
                                         {notification.title}
                                     </p>
                                     <p className="text-sm text-muted-foreground">
                                         {notification.formattedDate}
                                     </p>
                                 </div>
-                                {notification.id === 'n4' && (
+                                {(notification.id === 'n4' || notification.id === 'n6') && (
                                     <Badge variant="destructive">Important</Badge>
                                 )}
                             </div>
                         </AccordionTrigger>
-                        <AccordionContent className={`p-4 pt-0 text-sm text-muted-foreground whitespace-pre-wrap ${notification.id === 'n4' ? 'font-medium text-foreground' : ''}`}>
-                            {notification.id === 'n4' && (
+                        <AccordionContent className={`p-4 pt-0 text-sm text-muted-foreground whitespace-pre-wrap ${notification.id === 'n4' || notification.id === 'n6' ? 'font-medium text-foreground' : ''}`}>
+                            {(notification.id === 'n4' || notification.id === 'n6') && (
                                 <p className="text-destructive font-bold mb-2">Disclaimer: Important Notice</p>
                             )}
                             {notification.description}
