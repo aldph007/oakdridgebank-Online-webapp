@@ -24,8 +24,10 @@ export default function NotificationsPage() {
   useEffect(() => {
     // Format dates on the client to avoid hydration mismatch
     const sorted = [...notifications].sort((a, b) => {
-        if (a.id === 'n4' || a.id === 'n6') return -1;
-        if (b.id === 'n4' || b.id === 'n6') return 1;
+        if (a.id === 'n6') return -1;
+        if (b.id === 'n6') return 1;
+        if (a.id === 'n4') return -1;
+        if (b.id === 'n4') return 1;
         return parseISO(b.date).getTime() - parseISO(a.date).getTime();
     });
 
@@ -87,14 +89,20 @@ export default function NotificationsPage() {
                                         {notification.formattedDate}
                                     </p>
                                 </div>
-                                {(notification.id === 'n4' || notification.id === 'n6') && (
+                                {notification.id === 'n4' && (
                                     <Badge variant="destructive">Important</Badge>
+                                )}
+                                {notification.id === 'n6' && (
+                                    <Badge variant="warning">Pending</Badge>
                                 )}
                             </div>
                         </AccordionTrigger>
                         <AccordionContent className={`p-4 pt-0 text-sm text-muted-foreground whitespace-pre-wrap ${notification.id === 'n4' || notification.id === 'n6' ? 'font-medium text-foreground' : ''}`}>
-                            {(notification.id === 'n4' || notification.id === 'n6') && (
+                            {(notification.id === 'n4') && (
                                 <p className="text-destructive font-bold mb-2">Disclaimer: Important Notice</p>
+                            )}
+                             {(notification.id === 'n6') && (
+                                <p className="text-yellow-600 font-bold mb-2">Action Required</p>
                             )}
                             {notification.description}
                         </AccordionContent>
