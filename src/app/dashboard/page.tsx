@@ -6,7 +6,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { accounts, transactions, user } from "@/lib/data"
+import { accounts, transactions, user, type Transaction } from "@/lib/data"
 import { format } from "date-fns"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { DollarSign } from "lucide-react"
@@ -33,6 +33,16 @@ function formatCurrency(amount: number) {
 export default function OverviewPage() {
     const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0)
     const recentTransactions = transactions.slice(0, 5);
+
+    const getAmountColor = (transaction: Transaction) => {
+        if (transaction.status === 'Pending') {
+          return 'text-yellow-500';
+        }
+        if (transaction.type === 'credit') {
+          return 'text-green-600';
+        }
+        return 'text-foreground';
+    };
   
     return (
       <div className="space-y-8">
@@ -95,7 +105,7 @@ export default function OverviewPage() {
                                 <TableCell className="font-medium">{transaction.description}</TableCell>
                                 <TableCell>{transaction.status}</TableCell>
                                 <TableCell className="text-right">
-                                    <span className={transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}>
+                                    <span className={getAmountColor(transaction)}>
                                         {formatCurrency(transaction.amount)}
                                     </span>
                                 </TableCell>
