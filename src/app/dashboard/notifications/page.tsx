@@ -26,15 +26,21 @@ export default function NotificationsPage() {
   useEffect(() => {
     // Format dates on the client to avoid hydration mismatch
     const sorted = [...notifications].sort((a, b) => {
-        if (a.id === 'n4') return -1; // Pinned to top
-        if (b.id === 'n4') return 1;
-        if (a.id === 'n6') return -1; // Then pending
-        if (b.id === 'n6') return 1;
         return parseISO(b.date).getTime() - parseISO(a.date).getTime();
     });
 
+    const pinned = sorted.find(n => n.id === 'n4');
+    const action = sorted.find(n => n.id === 'n6');
+    const rest = sorted.filter(n => n.id !== 'n4' && n.id !== 'n6');
+    
+    const finalSorted = [
+        ...(pinned ? [pinned] : []),
+        ...(action ? [action] : []),
+        ...rest
+    ]
+
     setDisplayNotifications(
-      sorted.map(n => ({
+      finalSorted.map(n => ({
         ...n,
         formattedDate: format(parseISO(n.date), "MMM d, yyyy 'at' h:mm a")
       }))
@@ -98,7 +104,7 @@ export default function NotificationsPage() {
                                     <Badge variant="destructive">Important</Badge>
                                 )}
                                 {notification.id === 'n6' && (
-                                    <Badge variant="warning">Action Required</Badge>
+                                    <Badge variant="destructive">Action Required</Badge>
                                 )}
                             </div>
                         </AccordionTrigger>

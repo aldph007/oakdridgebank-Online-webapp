@@ -72,7 +72,7 @@ export const notifications: Notification[] = [
       date: '2025-12-22T09:23:00Z',
       title: 'Action Required: Pending Transaction',
       description: 'A credit transaction for "Pending Property Sale" of $786,950.00 is awaiting your final confirmation (your Token).',
-      read: true
+      read: false
     },
     {
       id: 'n7',
