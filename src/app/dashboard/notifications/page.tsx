@@ -15,26 +15,6 @@ import {
 } from "@/components/ui/accordion"
 import { Badge } from '@/components/ui/badge';
 
-function PinIcon(props: React.ComponentProps<'svg'>) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            stroke="currentColor"
-            strokeWidth="0"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            >
-            <path d="M20.33 3.67a1.48 1.48 0 0 0-2.09 0l-9.47 9.47-1.7-1.7a1.48 1.48 0 0 0-2.09 2.09l1.7 1.7-3.92 3.92a1.48 1.48 0 0 0 2.09 2.09l3.92-3.92 1.7 1.7a1.48 1.48 0 0 0 2.09-2.09l-1.7-1.7 9.47-9.47a1.48 1.48 0 0 0 0-2.09z" />
-            <path d="m13.26 3.19-2.45 2.45 2.09 2.09 2.45-2.45a.74.74 0 0 0-2.09-2.09z" />
-        </svg>
-    );
-}
-
 interface DisplayNotification extends Notification {
     formattedDate: string;
 }
@@ -98,9 +78,7 @@ export default function NotificationsPage() {
                             className={`p-4 rounded-lg transition-colors hover:bg-muted/50 ${!notification.read ? 'bg-muted/50' : ''}`}
                         >
                             <div className="flex items-center gap-4 w-full">
-                                {notification.id === 'n4' ? (
-                                    <PinIcon className="h-5 w-5 text-destructive" />
-                                ) : notification.read ? (
+                                {notification.read ? (
                                     <MailOpen className="h-5 w-5 text-muted-foreground" />
                                 ) : (
                                     <Mail className="h-5 w-5 text-primary" />
