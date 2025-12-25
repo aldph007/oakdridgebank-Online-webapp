@@ -35,6 +35,10 @@ function PinIcon(props: React.ComponentProps<'svg'>) {
     );
 }
 
+interface DisplayNotification extends Notification {
+    formattedDate: string;
+}
+
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState(allNotifications);
   const [displayNotifications, setDisplayNotifications] = useState<DisplayNotification[]>([]);
