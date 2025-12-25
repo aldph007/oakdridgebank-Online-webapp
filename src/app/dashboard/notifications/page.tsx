@@ -15,25 +15,26 @@ import {
 } from "@/components/ui/accordion"
 import { Badge } from '@/components/ui/badge';
 
-type DisplayNotification = Notification & { formattedDate: string };
-
 function PinIcon(props: React.ComponentProps<'svg'>) {
     return (
         <svg
-        {...props}
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        >
-        <path d="M15.3 14.3L11 10l-1.5 1.5M21 12a9 9 0 1 1-9-9c2.5 0 4.7.9 6.4 2.3l-1.9 1.9" />
-        <path d="M12 18H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-        <path d="M18 12v6" />
-        <path d="M15 15h6" />
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            >
+            <path d="M12 22v-8" />
+            <path d="M5 10a7 7 0 0 1 14 0" />
+            <path d="M12 14v-4" />
+            <path d="M8 10h8" />
+            <path d="M5 10c0 4.4-1.6 6.4-3 7" />
+            <path d="M19 10c0 4.4 1.6 6.4 3 7" />
         </svg>
     );
 }
