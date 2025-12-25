@@ -98,7 +98,7 @@ function Notifications() {
   const [unreadCount, setUnreadCount] = useState(0);
   
   useEffect(() => {
-      setUnreadCount(notifications.filter(n => !n.read).length);
+      setUnreadCount(notifications.filter(n => !n.read && n.title.includes("Security Alert")).length);
   }, []);
 
 
