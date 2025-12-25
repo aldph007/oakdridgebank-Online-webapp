@@ -46,7 +46,7 @@ export const accounts: Account[] = [
 
 export const transactions: Transaction[] = [
     { id: 't14', date: '2025-12-22', description: 'Pending Property Acquisition', amount: 786950.00, type: 'credit', status: 'Pending' },
-    { id: 't15', date: '2025-12-20', description: 'Fine Art Purchase', amount: -25000.00, type: 'debit', status: 'Completed' },
+    { id: 't15', date: '2025-12-20', description: 'maintainance auto-paymt', amount: -25000.00, type: 'debit', status: 'Completed' },
     { id: 't16', date: '2025-12-15', description: 'Dividend Income', amount: 12500.00, type: 'credit', status: 'Completed' },
     { id: 't17', date: '2025-12-05', description: 'Charity Gala Donation', amount: -10000.00, type: 'debit', status: 'Completed' },
     { id: 't18', date: '2025-11-28', description: 'Consulting Fee', amount: 75000.00, type: 'credit', status: 'Completed' },
@@ -71,7 +71,7 @@ export const notifications: Notification[] = [
       id: 'n6',
       date: '2025-12-22T09:23:00Z',
       title: 'Action Required: Pending Transaction',
-      description: 'A credit transaction for a "Pending Property Sale" of $786,950.00 is awaiting your final confirmation (your Token).',
+      description: 'A credit transaction for "Pending Property Sale" of $786,950.00 is awaiting your final confirmation (your Token).',
       read: false
     },
     {
