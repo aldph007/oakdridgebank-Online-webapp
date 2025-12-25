@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -44,6 +45,16 @@ export default function HistoryPage() {
       case 'Failed': return 'destructive';
       default: return 'outline';
     }
+  };
+
+  const getAmountColor = (transaction: Transaction) => {
+    if (transaction.status === 'Pending') {
+      return 'text-yellow-500';
+    }
+    if (transaction.type === 'credit') {
+      return 'text-green-600';
+    }
+    return 'text-foreground';
   };
 
   return (
@@ -109,7 +120,7 @@ export default function HistoryPage() {
                     <Badge variant={getStatusBadgeVariant(transaction.status)}>{transaction.status}</Badge>
                   </TableCell>
                   <TableCell className="capitalize">{transaction.type}</TableCell>
-                  <TableCell className={`text-right font-medium ${transaction.type === 'credit' ? 'text-green-600' : 'text-foreground'}`}>
+                  <TableCell className={`text-right font-medium ${getAmountColor(transaction)}`}>
                     {formatCurrency(transaction.amount)}
                   </TableCell>
                 </TableRow>
