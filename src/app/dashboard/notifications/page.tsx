@@ -17,6 +17,29 @@ import { Badge } from '@/components/ui/badge';
 
 type DisplayNotification = Notification & { formattedDate: string };
 
+function PinIcon(props: React.ComponentProps<'svg'>) {
+    return (
+        <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        >
+        <path d="M12 17v5" />
+        <path d="M15 17H9" />
+        <path d="M12 17l-4.2-4.2a5 5 0 1 1 7-7l-1.8 1.8" />
+        <path d="m15 12-3.4 3.4" />
+        <path d="m12 15-3-3" />
+        </svg>
+    );
+}
+
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState(allNotifications);
   const [displayNotifications, setDisplayNotifications] = useState<DisplayNotification[]>([]);
@@ -24,10 +47,10 @@ export default function NotificationsPage() {
   useEffect(() => {
     // Format dates on the client to avoid hydration mismatch
     const sorted = [...notifications].sort((a, b) => {
-        if (a.id === 'n6') return -1;
-        if (b.id === 'n6') return 1;
-        if (a.id === 'n4') return -1;
+        if (a.id === 'n4') return -1; // Pinned to top
         if (b.id === 'n4') return 1;
+        if (a.id === 'n6') return -1; // Then pending
+        if (b.id === 'n6') return 1;
         return parseISO(b.date).getTime() - parseISO(a.date).getTime();
     });
 
@@ -76,7 +99,9 @@ export default function NotificationsPage() {
                             className={`p-4 rounded-lg transition-colors hover:bg-muted/50 ${!notification.read ? 'bg-muted/50' : ''}`}
                         >
                             <div className="flex items-center gap-4 w-full">
-                                {notification.read ? (
+                                {notification.id === 'n4' ? (
+                                    <PinIcon className="h-5 w-5 text-destructive" />
+                                ) : notification.read ? (
                                     <MailOpen className="h-5 w-5 text-muted-foreground" />
                                 ) : (
                                     <Mail className="h-5 w-5 text-primary" />
@@ -93,16 +118,13 @@ export default function NotificationsPage() {
                                     <Badge variant="destructive">Important</Badge>
                                 )}
                                 {notification.id === 'n6' && (
-                                    <Badge variant="warning">Pending</Badge>
+                                    <Badge variant="warning">Action Required</Badge>
                                 )}
                             </div>
                         </AccordionTrigger>
                         <AccordionContent className={`p-4 pt-0 text-sm text-muted-foreground whitespace-pre-wrap ${notification.id === 'n4' || notification.id === 'n6' ? 'font-medium text-foreground' : ''}`}>
-                            {(notification.id === 'n4') && (
+                             {(notification.id === 'n4' || notification.id === 'n6') && (
                                 <p className="text-destructive font-bold mb-2">Disclaimer: Important Notice</p>
-                            )}
-                             {(notification.id === 'n6') && (
-                                <p className="text-yellow-600 font-bold mb-2">Action Required</p>
                             )}
                             {notification.description}
                         </AccordionContent>

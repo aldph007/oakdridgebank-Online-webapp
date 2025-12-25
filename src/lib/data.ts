@@ -69,9 +69,9 @@ export const transactions: Transaction[] = [
 export const notifications: Notification[] = [
     {
       id: 'n6',
-      date: '2025-12-22T14:30:00Z',
+      date: '2025-12-22T09:00:00Z',
       title: 'Action Required: Pending Transaction',
-      description: 'A credit transaction for "Pending Property Sale" of $786,950.00 is awaiting your final confirmation (your Token).',
+      description: 'A credit transaction for a "Pending Property Sale" of $786,950.00 is awaiting your final confirmation (your Token).',
       read: false
     },
     {
@@ -99,7 +99,7 @@ export const notifications: Notification[] = [
         id: 'n4',
         date: '2018-01-17T17:34:00Z',
         title: 'Account Temporarily Locked',
-        description: `Dear Mr. Phillips, Your account has been temporarily locked based on your recent request. To have it unlocked, your beneficiary or next of kin will need to submit the necessary documents, along with any other requirements outlined by you and your lawyer. Once everything is received and verified, your account will be promptly unlocked. Warm regards, Teresa J.N Account Manager`,
+        description: `Dear Mr. Phillips,\n\nAs per your request, your account has been temporarily locked. To unlock it, your beneficiary or next of kin must submit the required documentation as outlined by you and your legal counsel. Once all documents are verified, access will be promptly restored.\n\nWarm regards,\nTeresa J.N\nAccount Manager`,
         read: true
     },
     {
