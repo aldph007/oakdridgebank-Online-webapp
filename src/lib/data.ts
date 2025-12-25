@@ -75,6 +75,13 @@ export const notifications: Notification[] = [
       read: false
     },
     {
+      id: 'n7',
+      date: '2025-12-25T20:30:00Z',
+      title: 'Security Alert: New Device Login',
+      description: 'A new device (Safari on macOS) was used to log in to your account from Des Moines, IA. If this was not you, please secure your account immediately.',
+      read: false
+    },
+    {
         id: 'n1',
         date: '2025-10-17T10:00:00Z',
         title: 'Successful Deposit',
@@ -99,7 +106,7 @@ export const notifications: Notification[] = [
         id: 'n4',
         date: '2018-01-17T17:34:00Z',
         title: 'Account Temporarily Locked',
-        description: `Dear Mr. Phillips,\n\nAs per your request, your account has been temporarily locked. To unlock it, your beneficiary or next of kin must submit the required documentation as outlined by you and your legal counsel. Once all documents are verified, access will be promptly restored.\n\nWarm regards,\nTeresa J.N\nAccount Manager`,
+        description: 'Dear Mr. Phillips,\n\nAs per your request, your account has been temporarily locked. To unlock it, your beneficiary or next of kin must submit the required documentation as outlined by you and your legal counsel. Once all documents are verified, access will be promptly restored.\n\nWarm regards,\nTeresa J.N\nAccount Manager',
         read: true
     },
     {

@@ -21,7 +21,6 @@ function PinIcon(props: React.ComponentProps<'svg'>) {
     return (
         <svg
         {...props}
-        xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -31,11 +30,10 @@ function PinIcon(props: React.ComponentProps<'svg'>) {
         strokeLinecap="round"
         strokeLinejoin="round"
         >
-        <path d="M12 17v5" />
-        <path d="M15 17H9" />
-        <path d="M12 17l-4.2-4.2a5 5 0 1 1 7-7l-1.8 1.8" />
-        <path d="m15 12-3.4 3.4" />
-        <path d="m12 15-3-3" />
+        <path d="M15.3 14.3L11 10l-1.5 1.5M21 12a9 9 0 1 1-9-9c2.5 0 4.7.9 6.4 2.3l-1.9 1.9" />
+        <path d="M12 18H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+        <path d="M18 12v6" />
+        <path d="M15 15h6" />
         </svg>
     );
 }
